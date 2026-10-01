@@ -1,0 +1,97 @@
+:root {
+  --uc-principal: #122853;
+  --uc-topo: #dce8f8;
+  --uc-suave: #c5d3ea;
+  --uc-detalhe: #6b82ae;
+  --uc-fundo: #f5f8fd;
+
+  --uc-principal-rgb: 18, 40, 83;
+  --uc-topo-rgb: 220, 232, 248;
+  --uc-detalhe-rgb: 107, 130, 174;
+
+  --cor-marca: #122853;
+
+  --bs-body-bg: var(--uc-fundo);
+  --bs-body-bg-rgb: 245, 248, 253;
+  --bs-body-color: var(--uc-principal);
+  --bs-body-color-rgb: var(--uc-principal-rgb);
+  --bs-emphasis-color: var(--uc-principal);
+  --bs-emphasis-color-rgb: var(--uc-principal-rgb);
+  --bs-heading-color: var(--uc-principal);
+  --bs-secondary-color: rgba(var(--uc-principal-rgb), 0.85);
+  --bs-border-color: var(--uc-suave);
+  --bs-dark-rgb: var(--uc-principal-rgb);
+  --bs-light-rgb: var(--uc-topo-rgb);
+  --bs-link-color: var(--uc-principal);
+  --bs-link-color-rgb: var(--uc-principal-rgb);
+  --bs-link-hover-color: var(--uc-principal);
+  --bs-link-hover-color-rgb: var(--uc-principal-rgb);
+
+  --bs-border-radius: 0.6rem;
+  --bs-border-radius-sm: 0.4rem;
+  --bs-border-radius-lg: 1rem;
+  --bs-border-radius-xl: 1.25rem;
+
+  --bs-danger-rgb: 176, 42, 55;
+  --bs-form-invalid-color: #b02a37;
+  --bs-form-invalid-border-color: #b02a37;
+}
+
+.btn,
+.btn-sm,
+.btn-lg {
+  --bs-btn-border-radius: 50rem;
+}
+
+.badge {
+  --bs-badge-border-radius: 50rem;
+}
+
+.btn-outline-dark {
+  --bs-btn-color: var(--uc-principal);
+  --bs-btn-border-color: var(--uc-principal);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: var(--uc-principal);
+  --bs-btn-hover-border-color: var(--uc-principal);
+  --bs-btn-focus-shadow-rgb: var(--uc-principal-rgb);
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: var(--uc-principal);
+  --bs-btn-active-border-color: var(--uc-principal);
+  --bs-btn-disabled-color: var(--uc-principal);
+  --bs-btn-disabled-border-color: var(--uc-principal);
+}
+
+.form-control {
+  background-color: #fff;
+  border-color: var(--uc-detalhe);
+}
+
+.form-control:focus {
+  border-color: var(--uc-principal);
+  box-shadow: 0 0 0 0.25rem rgba(var(--uc-detalhe-rgb), 0.3);
+}
+
+.form-control::placeholder {
+  color: rgba(var(--uc-principal-rgb), 0.7);
+}
+
+.cartao {
+  --bs-card-border-radius: 1rem;
+  --bs-card-bg: #fff;
+  background-color: #fff;
+  border: 1px solid var(--uc-suave);
+}
+
+.text-bg-secondary {
+  color: var(--uc-principal) !important;
+  background-color: var(--uc-suave) !important;
+}
+
+.amostra {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--uc-principal);
+  border-radius: 50%;
+  vertical-align: middle;
+}

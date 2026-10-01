@@ -1,0 +1,23 @@
+<div class="fundo" (click)="fechar.emit()">
+  <div class="caixa bg-white rounded-4 p-4 p-md-5 text-center shadow-lg" role="dialog" aria-modal="true"
+       aria-labelledby="tituloEsqueci" (click)="$event.stopPropagation()">
+    <button type="button" class="btn-close botao-fechar" aria-label="Fechar" (click)="fechar.emit()"></button>
+
+    <h3 id="tituloEsqueci" class="fw-bold fst-italic text-uppercase mb-4">Informe o seu Email</h3>
+
+    <form #f="ngForm" (ngSubmit)="enviar(f)">
+      <div class="input-group has-validation">
+        <input #campo type="email" name="email" [(ngModel)]="email" #campoEmail="ngModel"
+               class="form-control rounded-start-pill ps-3" placeholder="Digite seu e-mail" aria-label="E-mail"
+               required email pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" autocomplete="email"
+               [class.is-invalid]="tentou && campoEmail.invalid">
+        <button type="submit" class="btn btn-outline-dark rounded-end-pill fw-bold px-4">OK</button>
+        <div class="invalid-feedback text-start">Informe um e-mail válido!</div>
+      </div>
+    </form>
+
+    <div class="alert alert-success mt-4 mb-0" role="status" *ngIf="enviado">
+      Enviamos as instruções para <strong>{{ email }}</strong>.
+    </div>
+  </div>
+</div>

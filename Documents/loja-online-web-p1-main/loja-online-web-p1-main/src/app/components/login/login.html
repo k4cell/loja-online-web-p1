@@ -1,0 +1,36 @@
+<h3 class="mb-4">Faça seu login</h3>
+
+<div class="alert alert-info" role="status" *ngIf="retorno">Entre na sua conta para finalizar a compra.</div>
+
+<div class="row">
+  <div class="col-12 col-md-6 mb-4">
+    <p>Já tenho cadastro, informe o seu e-mail e senha</p>
+    <form #f="ngForm" (ngSubmit)="entrar(f)">
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail:</label>
+        <input type="email" id="email" name="email" [(ngModel)]="email" #campoEmail="ngModel" class="form-control"
+               required email pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" autocomplete="email"
+               [class.is-invalid]="tentou && campoEmail.invalid">
+        <div class="invalid-feedback">Informe um e-mail válido!</div>
+      </div>
+      <div class="mb-3">
+        <label for="senha" class="form-label">Senha:</label>
+        <input type="password" id="senha" name="senha" [(ngModel)]="senha" #campoSenha="ngModel" class="form-control"
+               minlength="8" required autocomplete="current-password"
+               [class.is-invalid]="tentou && campoSenha.invalid">
+        <div class="invalid-feedback">A senha deve ter no mínimo 8 caracteres!</div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-outline-dark">Entrar</button>
+      </div>
+      <button type="button" class="btn btn-link link-dark p-0" (click)="esqueciAberto = true">Esqueci minha senha</button>
+    </form>
+  </div>
+
+  <div class="col-12 col-md-6 mb-4 coluna-cadastro">
+    <p>Ainda não tenho cadastro:</p>
+    <a routerLink="/cadastro" class="btn btn-outline-dark w-100">Clique aqui</a>
+  </div>
+</div>
+
+<app-esqueci-senha *ngIf="esqueciAberto" (fechar)="esqueciAberto = false"></app-esqueci-senha>

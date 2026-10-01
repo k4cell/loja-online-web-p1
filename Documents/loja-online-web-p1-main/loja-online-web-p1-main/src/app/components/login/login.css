@@ -1,0 +1,5 @@
+@media (min-width: 768px) {
+  .coluna-cadastro {
+    border-left: 1px solid var(--uc-detalhe);
+  }
+}
