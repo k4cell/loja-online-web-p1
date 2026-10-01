@@ -11,7 +11,7 @@ export class ProdutoService {
       "descritivo": "Tinta acrílica fosca de super cobertura e secagem rápida. Serve para tela, madeira, papel e artesanato.",
       "valor": 24.90,
       "valorPromo": 21.90,
-      "estoque": 0,
+      "estoque": 40,
       "destaque": 1
     },
     {
@@ -20,7 +20,7 @@ export class ProdutoService {
       "descritivo": "Tinta guache de cores vivas e acabamento opaco, solúvel em água. Ideal para estudo e ilustração.",
       "valor": 6.50,
       "valorPromo": 0,
-      "estoque": 0,
+      "estoque": 40,
       "destaque": 0
     },
     {
@@ -29,7 +29,7 @@ export class ProdutoService {
       "descritivo": "Tinta a óleo com alta concentração de pigmento, para pintura sobre tela com brilho e profundidade.",
       "valor": 19.90,
       "valorPromo": 17.90,
-      "estoque": 0,
+      "estoque": 40,
       "destaque": 0
     },
     {
@@ -38,7 +38,7 @@ export class ProdutoService {
       "descritivo": "Tinta para pintura em tecido, não desbota com a lavagem depois de fixada.",
       "valor": 9.90,
       "valorPromo": 0,
-      "estoque": 0,
+      "estoque": 100,
       "destaque": 0
     },
     {
