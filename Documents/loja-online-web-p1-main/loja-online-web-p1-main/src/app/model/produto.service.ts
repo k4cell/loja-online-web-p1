@@ -20,7 +20,7 @@ export class ProdutoService {
       "descritivo": "Tinta guache de cores vivas e acabamento opaco, solúvel em água. Ideal para estudo e ilustração.",
       "valor": 6.50,
       "valorPromo": 0,
-      "estoque": 40,
+      "estoque": 60,
       "destaque": 0
     },
     {
