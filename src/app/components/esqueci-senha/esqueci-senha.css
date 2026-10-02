@@ -1,0 +1,26 @@
+.fundo {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: repeating-linear-gradient(
+    135deg,
+    rgba(var(--uc-principal-rgb), 0.75) 0 8px,
+    rgba(var(--uc-principal-rgb), 0.6) 8px 16px
+  );
+}
+
+.caixa {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+}
+
+.botao-fechar {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+}

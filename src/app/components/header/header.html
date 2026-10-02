@@ -1,0 +1,104 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" aria-label="Topo da loja">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2 marca" routerLink="/" aria-label="Universo das Cores - página inicial">
+        <img src="logo-icone.png" alt="" width="44" height="44">
+        <span class="marca-texto">
+          <strong class="marca-nome">Universo <span>das Cores</span></strong>
+          <small class="marca-slogan">Materiais de Arte</small>
+        </span>
+      </a>
+
+      <button class="navbar-toggler" type="button" aria-controls="navbarHeader" aria-label="Abrir ou fechar a busca"
+              [attr.aria-expanded]="menuAberto" (click)="menuAberto = !menuAberto">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarHeader" [class.show]="menuAberto">
+
+        <form class="busca mx-auto my-2 my-lg-0" role="search" (ngSubmit)="buscar()">
+          <div class="input-group busca-grupo">
+            <input class="form-control rounded-start-pill ps-3" type="search" name="q"
+                   placeholder="Buscar produtos" aria-label="Buscar produtos" [(ngModel)]="termo">
+            <button class="btn btn-busca rounded-end-pill" type="submit" aria-label="Buscar">
+              <svg class="icone" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="7.5"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+
+        <div class="d-flex justify-content-end">
+          <a *ngIf="!auth.usuario()" class="icone-usuario" routerLink="/login"
+             aria-label="Entrar ou cadastrar-se" title="Entrar ou cadastrar-se">
+            <svg class="icone" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </a>
+          <span *ngIf="auth.usuario()" class="icone-usuario" role="img"
+                [attr.aria-label]="'Conectado como ' + primeiroNome()" [title]="'Conectado como ' + primeiroNome()">
+            <svg class="icone" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="arco" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+
+  <nav class="menu mb-4" aria-label="Menu principal">
+    <div class="container menu-lista">
+      <a routerLink="/" routerLinkActive="ativo" [routerLinkActiveOptions]="{ exact: true }">
+        <svg class="icone" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Início
+      </a>
+      <a routerLink="/cesta" routerLinkActive="ativo">
+        <svg class="icone" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        Cesta<span class="badge" *ngIf="cesta.quantidade() > 0"
+                   [attr.aria-label]="cesta.quantidade() + ' itens na cesta'">{{ cesta.quantidade() }}</span>
+      </a>
+
+      <ng-container *ngIf="auth.usuario(); else visitante">
+        <span class="ola">Olá, {{ primeiroNome() }}</span>
+        <button type="button" class="sair" (click)="sair()">
+          <svg class="icone" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/>
+            <line x1="21" y1="12" x2="9" y2="12"/>
+          </svg>
+          Sair
+        </button>
+      </ng-container>
+      <ng-template #visitante>
+        <a routerLink="/login" routerLinkActive="ativo">
+          <svg class="icone" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/>
+            <line x1="15" y1="12" x2="3" y2="12"/>
+          </svg>
+          Entrar
+        </a>
+        <a routerLink="/cadastro" routerLinkActive="ativo">
+          <svg class="icone" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/>
+            <line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/>
+          </svg>
+          Cadastre-se
+        </a>
+      </ng-template>
+    </div>
+  </nav>
+</header>

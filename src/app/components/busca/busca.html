@@ -1,0 +1,9 @@
+<h4 class="mb-4">Pesquisa por: <strong>{{ termo() }}</strong></h4>
+
+<p class="alert alert-warning" role="status" *ngIf="resultados().length === 0">Nenhum produto encontrado.</p>
+
+<div class="row">
+  <div class="col-12 col-sm-6 mb-4" *ngFor="let obj of resultados()">
+    <app-produto-card [obj]="obj"></app-produto-card>
+  </div>
+</div>

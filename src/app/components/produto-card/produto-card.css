@@ -1,0 +1,13 @@
+.foto {
+  height: 170px;
+  object-fit: contain;
+}
+
+.cartao {
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.cartao:hover {
+  border-color: var(--uc-detalhe);
+  box-shadow: 0 0.25rem 0.75rem rgba(var(--uc-principal-rgb), 0.15);
+}

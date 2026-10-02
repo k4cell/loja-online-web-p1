@@ -1,0 +1,49 @@
+<div class="row" *ngIf="obj() as p; else naoEncontrado">
+  <div class="col-12 col-md-6 mb-3">
+    <div class="card cartao">
+      <img [src]="p.codigo + '.jpg'" [alt]="p.nome" class="card-img-top foto" (error)="fotoIndisponivel($event)">
+    </div>
+  </div>
+  <div class="col-12 col-md-6 mb-3">
+    <h4>{{ p.nome }}</h4>
+    <p>{{ p.descritivo }}</p>
+    <div *ngIf="p.valorPromo > 0">
+      de: <s>{{ p.valor | currency:'BRL' }}</s><br>
+      <strong>por: {{ p.valorPromo | currency:'BRL' }}</strong>
+    </div>
+    <div *ngIf="p.valorPromo <= 0">
+      <strong>{{ p.valor | currency:'BRL' }}</strong>
+    </div>
+
+    <div class="mt-4" *ngIf="grupo() as g">
+      <div id="tituloOpcao" class="fw-semibold mb-2">
+        {{ g.titulo }}:
+        <span class="fw-normal" *ngIf="opcaoEscolhida() as escolhida">{{ escolhida.nome }}</span>
+      </div>
+      <div class="d-flex flex-wrap gap-2" role="radiogroup" aria-labelledby="tituloOpcao">
+        <ng-container *ngFor="let o of g.opcoes; let i = index">
+          <input type="radio" class="btn-check" name="opcao" autocomplete="off" [id]="'opcao' + i"
+                 [disabled]="o.estoque <= 0" [checked]="o.nome === opcaoEscolhida()?.nome" (change)="escolher(o)">
+          <label class="btn btn-outline-dark btn-sm d-flex align-items-center gap-2" [attr.for]="'opcao' + i"
+                 [title]="o.estoque <= 0 ? o.nome + ' (indisponível)' : o.nome">
+            <span class="amostra" *ngIf="o.cor" [style.background-color]="o.cor"></span>
+            <span [class.text-decoration-line-through]="o.estoque <= 0">{{ o.nome }}</span>
+          </label>
+        </ng-container>
+      </div>
+      <div class="text-danger small mt-2" role="alert" *ngIf="faltaEscolher()">
+        Escolha uma opção de {{ g.titulo | lowercase }} para continuar!
+      </div>
+    </div>
+
+    <div class="text-end mt-4">
+      <button type="button" class="btn btn-outline-dark" *ngIf="p.estoque > 0; else indisponivel" (click)="adicionarCesta(p)">Comprar</button>
+      <ng-template #indisponivel><span class="badge text-bg-secondary fs-6">Produto indisponível</span></ng-template>
+    </div>
+  </div>
+</div>
+
+<ng-template #naoEncontrado>
+  <p class="alert alert-warning" role="alert">Produto não encontrado!</p>
+  <a routerLink="/" class="btn btn-outline-dark">Voltar para a vitrine</a>
+</ng-template>

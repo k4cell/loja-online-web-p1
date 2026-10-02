@@ -1,0 +1,65 @@
+<h3 class="mb-3">Cadastro</h3>
+
+<div class="alert alert-success" role="alert" *ngIf="sucesso">
+  <strong>Parabéns!</strong> seu cadastro foi realizado com sucesso!
+  <a routerLink="/login" class="alert-link">Fazer login</a>
+</div>
+
+<form #f="ngForm" (ngSubmit)="cadastrar(f)">
+  <div class="row g-3">
+    <div class="col-12">
+      <label for="txtNome" class="form-label">Nome:</label>
+      <input type="text" id="txtNome" name="nome" [(ngModel)]="nome" #campoNome="ngModel" class="form-control"
+             placeholder="digite seu nome completo" maxlength="50" minlength="3" required autocomplete="name"
+             [class.is-invalid]="tentou && campoNome.invalid">
+      <div class="invalid-feedback">Informe seu nome completo!</div>
+    </div>
+
+    <div class="col-12">
+      <label for="txtEmail" class="form-label">E-mail:</label>
+      <input type="email" id="txtEmail" name="email" [(ngModel)]="email" #campoEmail="ngModel" class="form-control"
+             placeholder="digite seu e-mail" required email pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" autocomplete="email"
+             [class.is-invalid]="tentou && campoEmail.invalid">
+      <div class="invalid-feedback">Informe um e-mail válido!</div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label for="txtSenha" class="form-label">Senha:</label>
+      <input type="password" id="txtSenha" name="senha" [(ngModel)]="senha" #campoSenha="ngModel" class="form-control"
+             placeholder="digite uma senha" required autocomplete="new-password"
+             pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&]).{8,}"
+             [class.is-invalid]="tentou && campoSenha.invalid">
+      <div class="invalid-feedback">A senha deve conter pelo menos 8 caracteres, incluindo uma letra maiúscula, uma letra minúscula, um número e um caractere especial (&#64;$!%*?&amp;).</div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label for="txtConfirmaSenha" class="form-label">Confirmar senha:</label>
+      <input type="password" id="txtConfirmaSenha" name="confirmaSenha" [(ngModel)]="confirmaSenha"
+             #campoConfirma="ngModel" class="form-control" placeholder="digite a senha novamente" required
+             autocomplete="new-password" [class.is-invalid]="tentou && (campoConfirma.invalid || senhasDiferentes)">
+      <div class="invalid-feedback">{{ confirmaSenha && senhasDiferentes ? 'As senhas não conferem!' : 'Confirme a senha!' }}</div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <label for="txtCPF" class="form-label">CPF:</label>
+      <input type="text" id="txtCPF" name="cpf" [(ngModel)]="cpf" (ngModelChange)="mascarar(campoCpf, $event, mascararCpf)"
+             #campoCpf="ngModel" class="form-control" placeholder="000.000.000-00" inputmode="numeric" required
+             pattern="[0-9]{3}\.[0-9]{3}\.[0-9]{3}-[0-9]{2}" [class.is-invalid]="tentou && campoCpf.invalid">
+      <div class="invalid-feedback">Informe o CPF no formato 000.000.000-00!</div>
+    </div>
+    <div class="w-100 d-none d-md-block"></div>
+
+    <div class="col-12 col-md-6">
+      <label for="txtTelefone" class="form-label">Telefone:</label>
+      <input type="text" id="txtTelefone" name="telefone" [(ngModel)]="telefone"
+             (ngModelChange)="mascarar(campoTelefone, $event, mascararTelefone)" #campoTelefone="ngModel" class="form-control"
+             placeholder="(11) 99999-9999" inputmode="tel" autocomplete="tel" required
+             pattern="\([0-9]{2}\) [0-9]{5}-[0-9]{4}" [class.is-invalid]="tentou && campoTelefone.invalid">
+      <div class="invalid-feedback">Informe o telefone no formato (11) 99999-9999!</div>
+    </div>
+
+    <div class="col-12 col-md-6 pt-md-4">
+      <button type="submit" class="btn btn-outline-dark w-100 mt-md-2">Confirmar</button>
+    </div>
+  </div>
+</form>
